@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Parking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Car Parking System</div>
+            <nav>
+                <a href="#hero">Home</a>
+                <a href="#liveFeed">Live Feed</a>
+                <a href="#parkingSlots">Parking Slots</a>
+                <a href="#detection">Car Detection</a>
+            </nav>
+        </div>
+    </header>
+    <section class="hero" id="hero">
+        <h1>Welcome to the Car Parking System</h1>
+        <p>Manage your parking slots and detect cars with ease.</p>
+    </section>
+    <main>
+        <section class="section" id="liveFeed">
+            <h2>Live Camera Feed</h2>
+            <div class="camera-feed">
+                <video id="videoFeed" autoplay></video>
+            </div>
+        </section>
+        <section class="section" id="parkingSlots">
+            <h2>Parking Slots</h2>
+            <div class="parking-lot">
+                <!-- Parking slots will be generated dynamically using JavaScript -->
+            </div>
+        </section>
+        <section class="section" id="detection">
+            <h2>Car Slot Availability</h2>
+            <div id="detectionResult">
+                <!-- Detection results will be displayed here -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Car Parking System. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Parking Slot Details -->
+    <div id="slotModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Park Vehicle in Slot</h2>
+            <form id="slotForm">
+                <div class="form-group">
+                    <label for="licensePlate">License Plate:</label><br>
+                    <input type="text" id="licensePlate" required><br>
+                </div>
+                <div class="form-group">
+                    <label for="driverName">Driver Name:</label><br>
+                    <input type="text" id="driverName" required><br>
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label><br>
+                    <input type="text" id="contactNumber" required><br>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
