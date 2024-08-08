@@ -15,6 +15,7 @@ header {
     top: 0;
     left: 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensure header is on top */
 }
 
 header .container {
@@ -29,6 +30,13 @@ header .container {
 header .logo {
     font-size: 24px;
     font-weight: bold;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+header nav {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 10px; /* Add space between navigation items */
 }
 
 header nav a {
@@ -107,18 +115,19 @@ button:hover {
 /* Parking Section Styles */
 .parking-lot {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjusted min-width for better fit */
+    grid-gap: 10px;
     margin-top: 20px;
 }
 
 .parking-slot {
-    padding: 20px;
+    padding: 10px;
     border: 2px solid #ddd;
     text-align: center;
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
     color: white;
+    font-size: 14px; /* Smaller font size for better fit */
 }
 
 .parking-slot.empty {
@@ -144,8 +153,8 @@ button:hover {
 /* Detection Section Styles */
 #detectionResult {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusted min-width for better fit */
+    grid-gap: 10px;
     padding: 20px;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -153,35 +162,33 @@ button:hover {
 }
 
 #detectionResult .slot-button {
-    background-color: #007bff;
-    color: white;
     padding: 10px;
-    border: none;
-    border-radius: 4px;
+    border: 2px solid #ddd;
     text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#detectionResult .slot-button.occupied {
-    background-color: #dc3545; /* Red for occupied */
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+    color: white;
+    font-size: 12px; /* Smaller font size for better fit */
 }
 
 #detectionResult .slot-button.available {
-    background-color: #0056b3;
+    background-color: rgb(54, 21, 236); /* blue for available */
+}
+
+#detectionResult .slot-button.not-available {
+    background-color: rgb(176, 50, 22); /* red for not available */
 }
 
 /* Modal Styles */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1000; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
 }
@@ -192,15 +199,16 @@ button:hover {
     padding: 20px;
     border: 1px solid #888;
     width: 90%; /* Width for mobile devices */
-    max-width: 300px; /* Maximum width for larger screens */
+    max-width: 400px; /* Maximum width for larger screens */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add shadow for better visibility */
+    text-align: center; /* Center align text */
 }
 
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 24px; /* Adjusted for better visibility */
     font-weight: bold;
 }
 
@@ -211,10 +219,104 @@ button:hover {
     cursor: pointer;
 }
 
-/* Responsive Styles */
-@media (max-width: 600px) {
+/* Responsive Styles for Modal */
+@media (max-width: 768px) {
     .modal-content {
-        width: 95%; /* Increase width for very small screens */
+        width: 95%; /* Increase width for smaller screens */
+        max-width: 300px; /* Adjust maximum width for very small screens */
+    }
+    header .logo {
+        margin-bottom: 10px;
+    }
+
+    header nav {
+        justify-content: center;
+        width: 100%;
+    }
+
+    header nav a {
+        margin: 5px 10px;
+        font-size: 14px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section h2 {
+        font-size: 24px;
+    }
+
+    .parking-lot {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjusted for mobile view */
+    }
+
+    .parking-slot {
+        padding: 8px;
+        font-size: 12px; /* Smaller font size for better fit on mobile */
+    }
+
+    #detectionResult {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjusted for mobile view */
+    }
+
+    #detectionResult .slot-button {
+        padding: 8px;
+        font-size: 10px; /* Smaller font size for better fit on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    header .container {
+        align-items: center;
+    }
+
+    header .logo {
+        font-size: 20px;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav a {
+        margin: 5px 0;
+        font-size: 12px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .section h2 {
+        font-size: 20px;
+    }
+
+    .parking-lot {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Further adjusted for very small screens */
+    }
+
+    .parking-slot {
+        padding: 6px;
+        font-size: 10px; /* Even smaller font size for very small screens */
+    }
+
+    #detectionResult {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Further adjusted for very small screens */
+    }
+
+    #detectionResult .slot-button {
+        padding: 6px;
+        font-size: 8px; /* Even smaller font size for very small screens */
     }
 }
 
@@ -227,3 +329,4 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
